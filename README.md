@@ -22,21 +22,21 @@ gulp.src("./src/*.ext")
 ### gulp_md5_thing( arg )
 #### arg
 	Type: `String` or `Object` 
-	Optionnal: 
+	Optional: 
 	If type == `String`:
-	    'arg'  is number representing the number of characters from md5 hash string to be used in the filename
+	    'arg'  is a number representing the number of characters from the md5 hash string to be used in the filename
  
 	If type == `Object`:
 	    'arg' may have any or all of the following properties : 
-			'size'      : A number representing the number of characters from md5 hash string to be used in the filename
+			'size'      : A number representing the number of characters from the md5 hash string to be used in the filename
 			'separator' : A custom separator between the filename and the md5 hash ( e.g. '', '_', '---' )
-		    'dict'      : A reference to an Object which will be populated with an entry for each filename processed during exection
-			               Each entry will contain the following properties after execution:
-						   'hash'       : The md5 hash created (truncated if 'size' was specified)
-						   'hashedname' : The new filename with md5 hash inserted
-						   'hashedpath' : The new filepath with md5 hash inserted
+		    'md5info'   : A reference to a dictionary which will be populated with an entry for each filename processed during execution
+			              Each entry will contain the following properties after execution:
+						   'hash'           : The md5 hash created (truncated if 'size' was specified)
+						   'hashedfilename' : The new filename with md5 hash inserted
+						   'hashedfilepath' : The new filepath with md5 hash inserted
  
-	Default: If omitted a full 32 character md5 hash is used and separator is '-'
+	Default: If arg is omitted a full 32 character md5 hash is used and the separator is '-'
 
 
 ## Example
@@ -55,9 +55,9 @@ top/
 ```
 
 ```javascript
-   var md5Dict = {};
-	gulp.src('src/**/*.ext', {base: './top'})
-        .pipe(gulp_md5_thing({size:6, separator:'_', dict:md5Dict}))
+   var md5_info = {};
+   gulp.src('src/**/*.ext', {base: './top'})
+        .pipe(gulp_md5_thing({size:6, separator:'_', md5info:md5_info}))
         .pipe(gulp.dest('./dist'));
 ```
 
@@ -76,13 +76,13 @@ top/
 	├── file.c_2b86b1.ext
 ├── ...
 ```
-
+ 
 and
 
 ```shell
-console.log( md5Dict['file.a.ext'].hash );        //  6b85e3
-console.log( md5Dict['file.a.ext'].hashedname );  //  file.a_6b85e3.ext
-console.log( md5Dict['file.a.ext'].hashedpath );  //  src/file.a_6b85e3.ext
+console.log( md5_info['file.a.ext'].hash );            //  6b85e3
+console.log( md5_info['file.a.ext'].hashedfilename );  //  file.a_6b85e3.ext
+console.log( md5_info['file.a.ext'].hashedfilepath );  //  src/file.a_6b85e3.ext
 . . . 
 etc.
 ```

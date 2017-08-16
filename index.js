@@ -4,12 +4,12 @@ var gulp_util 	= require('gulp-util');
 var crypto 		= require('crypto');
 
 module.exports = function( params ) {
-	var separator, size, dictionary;
+	var separator, size, md5info;
 
   if (typeof params === 'object') {
     separator = params.separator || '-';
     size = params.size || 0;
-	dictionary = params.dictionary || {};
+	md5info = params.md5info || {};
   } else {
     size = params || 0;
     separator = '-';
@@ -37,7 +37,7 @@ module.exports = function( params ) {
     }).join('.');
 
     file.path = path.join(dir, md5Filename);
-	dictionary[filename] = {hash:md5Hash, hashedpath:file.path, hashedname:md5Filename};
+    md5info[filename] = {hash:md5Hash, hashedpath:file.path, hashedfilename:md5Filename};
     this.push(file);
     cb();
   }, function(cb) {
