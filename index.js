@@ -15,7 +15,7 @@ module.exports = function( params ) {
     separator = '-';
   }
 
-  return through.obj(function(file, enc, cb) {
+  return through2.obj(function(file, enc, cb) {
     if (file.isStream()) {
       this.emit('error', new gutil.PluginError('gulp-debug', 'Streaming not supported'));
       return cb();

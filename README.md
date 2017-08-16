@@ -13,7 +13,7 @@ var md5Dict = {};
 var gulp_md5_thing = require("gulp-md5-thing");
 
 gulp.src("./src/*.ext")
-	.pipe(md5_thing( arg ))
+	.pipe(gulp_md5_thing( arg ))
 	.pipe(gulp.dest("./dist"));
 ```
 
@@ -57,7 +57,7 @@ top/
 ```javascript
    var md5Dict = {};
 	gulp.src('src/**/*.ext', {base: './top'})
-        .pipe(md5({size:6, separator:'_', dict:md5Dict}))
+        .pipe(gulp_md5_thing({size:6, separator:'_', dict:md5Dict}))
         .pipe(gulp.dest('./dist'));
 ```
 
