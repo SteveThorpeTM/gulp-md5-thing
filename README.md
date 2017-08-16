@@ -10,7 +10,7 @@ npm install --save-dev gulp-md5-thing
 ```javascript
 var md5Dict = {};
 
-var md5_thing = require("gulp-md5-thing");
+var gulp_md5_thing = require("gulp-md5-thing");
 
 gulp.src("./src/*.ext")
 	.pipe(md5_thing( arg ))
@@ -19,7 +19,7 @@ gulp.src("./src/*.ext")
 
 ## API
 
-### md5( arg )
+### gulp_md5_thing( arg )
 #### arg
 	Type: `String` or `Object` 
 	Optionnal: 

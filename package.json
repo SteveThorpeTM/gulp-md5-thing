@@ -1,0 +1,25 @@
+{
+  "name": "gulp-md5-thing",
+  "version": "0.0.1",
+  "description": "Insert MD5 hash into a filenames and update a dictionary of information about the hashes and renamed files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SteveThorpeTM/gulp-md5-thing.git"
+  },
+  "keywords": [
+    "md5",
+    "md5 hash",
+	"md5 rename"
+  ],
+  "dependencies": {
+    "gulp-util": "~2.2.14",
+    "through2": "^0.4.1"
+  },
+  "homepage": "https://github.com/SteveThorpeTM/gulp-md5-thing.git",
+  "author": "SteveT",
+  "license": "MIT"
+}
