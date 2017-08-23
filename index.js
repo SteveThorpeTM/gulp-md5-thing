@@ -37,7 +37,9 @@ module.exports = function( params ) {
     }).join('.');
 
     file.path = path.join(dir, md5Filename);
-    md5info[filename] = {hash:md5Hash, hashedpath:file.path, hashedfilename:md5Filename};
+	if ( md5info ){
+	    md5info[filename] = {hash:md5Hash, hashedpath:file.path, hashedfilename:md5Filename};	
+	}
     this.push(file);
     cb();
   }, function(cb) {
