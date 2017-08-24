@@ -1,6 +1,6 @@
 {
   "name": "gulp-md5-thing",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Insert MD5 hash into a filenames and update a dictionary of information about the hashes and renamed files",
   "main": "index.js",
   "scripts": {
