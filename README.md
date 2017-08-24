@@ -30,11 +30,14 @@ gulp.src("./src/*.ext")
 	    'arg' may have any or all of the following properties : 
 			'size'      : A number representing the number of characters from the md5 hash string to be used in the filename
 			'separator' : A custom separator between the filename and the md5 hash ( e.g. '', '_', '---' )
-		    'md5info'   : A reference to a dictionary which will be populated with an entry for each filename processed during execution
-			              Each entry will contain the following properties after execution:
-						   'hash'           : The md5 hash created (truncated if 'size' was specified)
-						   'hashedfilename' : The new filename with md5 hash inserted
-						   'hashedfilepath' : The new filepath with md5 hash inserted
+			'inject'    : A string 'search and replace' token. 
+							If provided, and if the token string is present in the file it will be replaced with the md5 hash, 
+							calulated on the file's contents before the hash is injected.
+		    'md5info'   : A reference to a dictionary which will be populated with an entry for each filename processed during execution.
+			              	Each entry will contain the following properties after execution:
+						   		'hash'           : The md5 hash created (truncated if 'size' was specified)
+						   	 	'hashedfilename' : The new filename with md5 hash inserted
+						   	 	'hashedfilepath' : The new filepath with md5 hash inserted
  
 	Default: If arg is omitted a full 32 character md5 hash is used and the separator is '-'
 

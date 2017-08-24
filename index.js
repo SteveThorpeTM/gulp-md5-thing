@@ -10,6 +10,7 @@ module.exports = function( params ) {
     separator = params.separator || '-';
     size = params.size || 0;
 	md5info = params.md5info || {};
+	inject = params.inject || null;
   } else {
     size = params || 0;
     separator = '-';
@@ -20,8 +21,12 @@ module.exports = function( params ) {
       this.emit('error', new gutil.PluginError('gulp-debug', 'Streaming not supported'));
       return cb();
     }
-
     var md5Hash = calcMd5(file, size);
+
+    if (inject ){
+        file.contents = new Buffer( String(file.contents).replace(inject, md5Hash ));
+    }
+
     var filename = path.basename(file.path)
     var dir;
 
@@ -38,10 +43,16 @@ module.exports = function( params ) {
 
     file.path = path.join(dir, md5Filename);
 	if ( md5info ){
-	    md5info[filename] = {hash:md5Hash, hashedpath:file.path, hashedfilename:md5Filename};	
-	}
-    this.push(file);
-    cb();
+        md5info['lastHash'] = md5Hash;
+	    md5info[filename] = {hash:md5Hash, hashedpath:file.path, hashedfilename:md5Filename};
+	    setTimeout( function(){
+            this.push(file);
+            cb();
+        }.bind(this), 2000)
+	}else{
+        this.push(file);
+        cb();
+    }
   }, function(cb) {
     cb();
   });
